@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
   public void TakeDamage(int amountDamage)
   {
     currentHealth -= amountDamage;
-    if (currentHealth < 0)
+    if (currentHealth <= 0)
     {
       purse.AddCash(cashPoints);
       Destroy(this.gameObject);
