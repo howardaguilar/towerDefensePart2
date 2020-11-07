@@ -17,8 +17,9 @@ public class Enemy : MonoBehaviour
   private HealthBar healthBar;
 
   // Start is called before the first frame update
-  void Start()
+  public void StartEnemy(Waypoints[] navigationalPath)
   {
+    navPoints = navigationalPath;
     purse = GameObject.FindGameObjectWithTag("Purse").GetComponent<Purse>();
     healthBar = GetComponentInChildren<HealthBar>();
     startingHealth = currentHealth;
@@ -65,8 +66,9 @@ public class Enemy : MonoBehaviour
     currentHealth -= amountDamage;
     if (currentHealth <= 0)
     {
-      purse.AddCash(cashPoints);
-      Destroy(this.gameObject);
+      purse.AddCash(cashPoints); // Add cash to purse
+      //DeathEvent.Invoke(); // Notify towers that I am killed
+      Destroy(this.gameObject); // Get rid of object
     }
     else
     {
